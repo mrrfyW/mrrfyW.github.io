@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Images</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('images/background.png'); /* Set your background image */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+        }
+        
+        .image {
+            position: absolute;
+            bottom: -100px; /* Start from the bottom of the page */
+            animation: slideAndWave 5s infinite alternate;
+        }
+        
+        @keyframes slideAndWave {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scaleY(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50px) scaleY(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scaleY(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="image" style="left: 20%;"> <!-- Adjust left, center, and right positions accordingly -->
+        <img src="images/Lenored.png" alt="Lenored">
+    </div>
+    <div class="image" style="left: 50%;">
+        <img src="images/Logo.png" alt="Logo">
+    </div>
+    <div class="image" style="left: 80%;">
+        <img src="images/Whimsicle.png" alt="Whimsicle">
+    </div>
+</body>
+</html>
