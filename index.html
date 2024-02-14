@@ -97,12 +97,39 @@
             leftImage.style.left = (logoCenterX - logoRect.width / 2) + 'px';
             leftImage.style.bottom = (logoBottomY - 10) + 'px';
 
-            rightImage.style.right = (window.innerWidth - logoCenterX - logoRect.width / 2) + 'px';
+            rightImage.style.right = (document.documentElement.clientWidth - logoCenterX - logoRect.width / 2) + 'px';
             rightImage.style.bottom = (logoBottomY - 10) + 'px';
         }
 
         window.addEventListener('resize', positionImages);
         positionImages();
+
+        var images = ["Lenored1.png", "Lenored2.png", "Lenored3.png", "Lenored4.png", "Lenored5.png", "Lenored6.png", "Lenored7.png", "Lenored8.png"];
+        var lastLenoredIndex = -1;
+        var whimsicleIndex = 0;
+
+        function getRandomImage() {
+            var randomIndex = Math.floor(Math.random() * images.length);
+            while (randomIndex === lastLenoredIndex) { // Ensure different image than last one
+                randomIndex = Math.floor(Math.random() * images.length);
+            }
+            lastLenoredIndex = randomIndex;
+            return images[randomIndex];
+        }
+
+        function cycleWhimsicleImage() {
+            var img = document.querySelector('.image.right img');
+            img.src = (whimsicleIndex % 2 === 0) ? 'images/Whimsicle1.png' : 'images/Whimsicle2.png';
+            whimsicleIndex++;
+        }
+
+        setInterval(function() {
+            cycleWhimsicleImage();
+            var lenoredImages = document.querySelectorAll('.image.left img');
+            lenoredImages.forEach(function(img) {
+                img.src = 'images/' + getRandomImage();
+            });
+        }, 1500);
     </script>
 </body>
 </html>
