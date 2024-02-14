@@ -48,16 +48,18 @@
             transition: transform 0.5s ease;
         }
 
+        .left, .right {
+            transform-origin: bottom;
+            transform: translateY(-20%) rotate(-5deg); /* Tilt slightly */
+        }
+
         .left {
-            left: 5%;
-            transform-origin: bottom left;
-            transform: translateY(-20%) rotate(-5deg); /* Tilt left slightly */
+            left: 50%;
+            transform-origin: bottom right;
         }
 
         .right {
-            left: 50%;
-            transform-origin: bottom right;
-            transform: translateY(-20%) rotate(5deg) scaleX(1.35); /* Tilt right slightly and scale */
+            transform-origin: bottom left;
         }
 
         .logo {
@@ -83,32 +85,24 @@
     </div>
 
     <script>
-        var images = ["Lenored1.png", "Lenored2.png", "Lenored3.png", "Lenored4.png", "Lenored5.png", "Lenored6.png", "Lenored7.png", "Lenored8.png"];
-        var lastLenoredIndex = -1;
-        var whimsicleIndex = 0;
+        var logo = document.querySelector('.logo');
+        var leftImage = document.querySelector('.image.left');
+        var rightImage = document.querySelector('.image.right');
 
-        function getRandomImage() {
-            var randomIndex = Math.floor(Math.random() * images.length);
-            while (randomIndex === lastLenoredIndex) { // Ensure different image than last one
-                randomIndex = Math.floor(Math.random() * images.length);
-            }
-            lastLenoredIndex = randomIndex;
-            return images[randomIndex];
+        function positionImages() {
+            var logoRect = logo.getBoundingClientRect();
+            var logoCenterX = logoRect.left + logoRect.width / 2;
+            var logoBottomY = logoRect.bottom;
+
+            leftImage.style.left = (logoCenterX - logoRect.width / 2) + 'px';
+            leftImage.style.bottom = (logoBottomY - 10) + 'px';
+
+            rightImage.style.right = (window.innerWidth - logoCenterX - logoRect.width / 2) + 'px';
+            rightImage.style.bottom = (logoBottomY - 10) + 'px';
         }
 
-        function cycleWhimsicleImage() {
-            var img = document.querySelector('.image.right img');
-            img.src = (whimsicleIndex % 2 === 0) ? 'images/Whimsicle1.png' : 'images/Whimsicle2.png';
-            whimsicleIndex++;
-        }
-
-        setInterval(function() {
-            cycleWhimsicleImage();
-            var lenoredImages = document.querySelectorAll('.image.left img');
-            lenoredImages.forEach(function(img) {
-                img.src = 'images/' + getRandomImage();
-            });
-        }, 1500);
+        window.addEventListener('resize', positionImages);
+        positionImages();
     </script>
 </body>
 </html>
