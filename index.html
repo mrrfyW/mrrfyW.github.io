@@ -27,7 +27,7 @@
         }
 
         img {
-            max-width: 45%; /* Limit image size to 45% of window width */
+            max-width: 30%; /* Limit image size to 30% of window width */
             height: auto;
         }
 
@@ -53,7 +53,7 @@
         }
 
         .right {
-            right: 5%;
+            right: calc(50% + 15%);
             transform-origin: bottom right;
             transform: translateY(-50%) rotate(5deg); /* Tilt right slightly */
         }
@@ -80,10 +80,16 @@
 
     <script>
         var images = ["Lenored1.png", "Lenored2.png", "Lenored3.png", "Lenored4.png", "Lenored5.png", "Lenored6.png", "Lenored7.png", "Lenored8.png"];
+        var lastLenoredIndex = -1;
         var whimsicleIndex = 0;
 
         function getRandomImage() {
-            return images[Math.floor(Math.random() * images.length)];
+            var randomIndex = Math.floor(Math.random() * images.length);
+            while (randomIndex === lastLenoredIndex) { // Ensure different image than last one
+                randomIndex = Math.floor(Math.random() * images.length);
+            }
+            lastLenoredIndex = randomIndex;
+            return images[randomIndex];
         }
 
         function cycleWhimsicleImage() {
