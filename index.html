@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>temp</title>
+    <title>Temp</title>
     <style>
         body {
             margin: 0;
@@ -31,17 +31,31 @@
             height: auto;
         }
 
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
         .image {
             position: absolute;
             bottom: 0;
+            transition: transform 0.5s ease;
         }
 
         .left {
             left: 5%;
+            transform-origin: bottom left;
+            transform: translateY(-50%) rotate(-5deg); /* Tilt left slightly */
         }
 
         .right {
             right: 5%;
+            transform-origin: bottom right;
+            transform: translateY(-50%) rotate(5deg); /* Tilt right slightly */
         }
 
         .logo {
@@ -54,14 +68,11 @@
     </style>
 </head>
 <body>
-    <img class="background" src="images/Background.png" alt="Background" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+    <img class="background" src="images/background.png" alt="Background">
     <img class="logo" src="images/Logo.png" alt="Logo">
 
     <div class="image left">
         <img src="images/Lenored1.png" alt="Lenored">
-    </div>
-    <div class="image">
-        <img src="images/Logo.png" alt="Logo">
     </div>
     <div class="image right">
         <img src="images/Whimsicle1.png" alt="Whimsicle">
