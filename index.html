@@ -43,20 +43,21 @@
             opacity: 1; /* Ensure background image remains visible after animation */
         }
 
-        .left {
+        .left, .right {
             position: absolute;
-            left: 15%;
-            transform: rotate(-5deg);
+            top: 40%; /* Set top position to 40% */
             transition: transform 0.5s ease;
-            max-width: 50%; /* Limit left image size to 50% of window width */
+            max-width: 65%; /* Limit image size to 65% of window width */
+        }
+
+        .left {
+            left: 22%; /* Set left position to 22% */
+            transform: rotate(-5deg); /* Rotate 5 degrees left */
         }
 
         .right {
-            position: absolute;
-            left: 65%;
-            transform: rotate(5deg);
-            transition: transform 0.5s ease;
-            max-width: 50%; /* Limit right image size to 50% of window width */
+            left: 72%; /* Set left position to 72% */
+            transform: rotate(5deg); /* Rotate 5 degrees right */
         }
 
         .logo {
