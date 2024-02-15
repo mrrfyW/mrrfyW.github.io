@@ -86,11 +86,11 @@
             var windowHeight = window.innerHeight;
             var windowWidth = window.innerWidth;
 
-            leftImage.style.left = (windowWidth / 2 - 15) + 'px'; // Adjust left image x position
-            leftImage.style.top = (windowHeight / 2 - 5) + 'px'; // Adjust left image y position
+            leftImage.style.left = (windowWidth / 2) + 'px'; // Set left image x position to center of window
+            leftImage.style.top = (windowHeight / 2) + 'px'; // Set left image y position to center of window
 
-            rightImage.style.right = (windowWidth / 2 - 15) + 'px'; // Adjust right image x position
-            rightImage.style.top = (windowHeight / 2 - 5) + 'px'; // Adjust right image y position
+            rightImage.style.right = (windowWidth / 2) + 'px'; // Set right image x position to center of window
+            rightImage.style.top = (windowHeight / 2) + 'px'; // Set right image y position to center of window
         }
 
         window.addEventListener('resize', positionImages);
