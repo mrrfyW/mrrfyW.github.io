@@ -85,14 +85,12 @@
         function positionImages() {
             var windowHeight = window.innerHeight;
             var windowWidth = window.innerWidth;
-            var logoCenterY = windowHeight / 2;
-            var logoCenterX = windowWidth / 2;
 
-            leftImage.style.left = (logoCenterX - 10) + 'px'; // Adjust left image x position
-            leftImage.style.top = (logoCenterY + 5) + 'px'; // Adjust left image y position
+            leftImage.style.left = (windowWidth / 2 - 15) + 'px'; // Adjust left image x position
+            leftImage.style.top = (windowHeight / 2 - 5) + 'px'; // Adjust left image y position
 
-            rightImage.style.right = (windowWidth - logoCenterX - 10) + 'px'; // Adjust right image x position
-            rightImage.style.top = (logoCenterY + 5) + 'px'; // Adjust right image y position
+            rightImage.style.right = (windowWidth / 2 - 15) + 'px'; // Adjust right image x position
+            rightImage.style.top = (windowHeight / 2 - 5) + 'px'; // Adjust right image y position
         }
 
         window.addEventListener('resize', positionImages);
