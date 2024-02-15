@@ -155,7 +155,7 @@
         backgroundMusic.src = "audio/eshopstart.mp3"; // Start with section1
         backgroundMusic.play();
         musicInfo.style.display = "block";
-        trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo eShop</a>';
+        trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo 3DS eShop</a>';
       } else {
         backgroundMusic.pause();
         musicInfo.style.display = "none";
@@ -169,22 +169,22 @@
         backgroundMusic.play();
       } else if (backgroundMusic.src.endsWith('eshoploop1.mp3')) {
         // After playing section2, decide whether to play section2 or section3
-        const randomChance = Math.floor(Math.random() * 14); // Random number from 0 to 13
+        const randomChance = Math.floor(Math.random() * 7); // Random number from 0 to 13
         if (randomChance === 0) {
           // Play section3
           backgroundMusic.src = "audio/eshoploop2.mp3";
-          trackName.innerHTML = '<a href="https://youtu.be/xqvrIg9zrqY" target="_blank">Playing: January 2015 - Nintendo eShop (SiivaGunner)</a>';
+          trackName.innerHTML = '<a href="https://youtu.be/xqvrIg9zrqY" target="_blank">Playing: January 2015 - Nintendo 3DS eShop (SiivaGunner)</a>';
         } else {
           // Play section2
           backgroundMusic.src = "audio/eshoploop1.mp3";
-          trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo eShop</a>';
+          trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo 3DS eShop</a>';
         }
         backgroundMusic.play();
       } else if (backgroundMusic.src.endsWith('eshoploop2.mp3')) {
         // After playing section3, revert back to section2
         backgroundMusic.src = "audio/eshoploop1.mp3";
         backgroundMusic.play();
-        trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo eShop</a>';
+        trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo 3DS eShop</a>';
       }
     });
   </script>
