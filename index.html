@@ -25,7 +25,7 @@
     background-image: url(images/background.png);
     background-size: cover;
     background-position: center;
-    filter: blur(5px);
+    filter: blur(2px);
     z-index: -1;
   }
   .logo {
@@ -40,25 +40,22 @@
   .left-image, .right-image {
     position: absolute;
     top: 50%;
-    width: 10%;
-    max-width: 191.8px; /* half of logo width */
-    transform: translateY(-50%);
     transition: transform 0.5s ease;
     z-index: 1;
   }
+
   .left-image {
-    left: 0;
-    transform-origin: left;
+    left: calc(50% - 25%); /* Positions at the left edge of the logo */
   }
+
   .right-image {
-    right: 0;
-    transform-origin: right;
+    right: calc(50% - 25%); /* Positions at the right edge of the logo */
   }
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="background"></div>
+  <img class="background" src="images/background.png" alt="Background">
   <img class="logo" src="images/Logo.png" alt="Logo">
   <img class="left-image" src="images/Lenored1.png" alt="Left Image">
   <img class="right-image" src="images/Whimsicle1.png" alt="Right Image">
