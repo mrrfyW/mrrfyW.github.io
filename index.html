@@ -78,8 +78,8 @@
     </div>
   </div>
   <audio id="background-music">
-    <source src="audio/section1.mp3" type="audio/mpeg">
-    <source src="audio/section2.mp3" type="audio/mpeg">
+    <source src="audio/eshopstart.mp3" type="audio/mpeg">
+    <source src="audio/eshoploop1.mp3" type="audio/mpeg">
   </audio>
   <script>
     
@@ -142,11 +142,11 @@
     });
 
     backgroundMusic.addEventListener('ended', () => {
-      if (backgroundMusic.src.endsWith('section1.mp3')) {
+      if (backgroundMusic.src.endsWith('eshopstart.mp3')) {
         // After playing section1, start the loop with section2
-        backgroundMusic.src = "audio/section2.mp3";
+        backgroundMusic.src = "audio/eshoploop1.mp3";
         backgroundMusic.play();
-      } else if (backgroundMusic.src.endsWith('section2.mp3')) {
+      } else if (backgroundMusic.src.endsWith('eshoploop1.mp3')) {
         // After playing section2, decide whether to play section2 or section3
         const randomChance = Math.floor(Math.random() * 14); // Random number from 0 to 13
         if (randomChance === 0) {
@@ -159,7 +159,7 @@
           trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo eShop</a>';
         }
         backgroundMusic.play();
-      } else if (backgroundMusic.src.endsWith('section3.mp3')) {
+      } else if (backgroundMusic.src.endsWith('eshoploop2.mp3')) {
         // After playing section3, revert back to section2
         backgroundMusic.src = "audio/eshoploop1.mp3";
         backgroundMusic.play();
