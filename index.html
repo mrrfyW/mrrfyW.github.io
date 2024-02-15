@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Github Spaces</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(images/background.png);
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    z-index: -1;
+  }
+  .logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-width: 959px; /* half of logo width */
+    z-index: 0;
+  }
+  .left-image, .right-image {
+    position: absolute;
+    top: 50%;
+    width: 10%;
+    max-width: 191.8px; /* half of logo width */
+    transform: translateY(-50%);
+    transition: transform 0.5s ease;
+    z-index: 1;
+  }
+  .left-image {
+    left: 0;
+    transform-origin: left;
+  }
+  .right-image {
+    right: 0;
+    transform-origin: right;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="background"></div>
+  <img class="logo" src="images/Logo.png" alt="Logo">
+  <img class="left-image" src="images/Lenored1.png" alt="Left Image">
+  <img class="right-image" src="images/Whimsicle1.png" alt="Right Image">
+</div>
+<script>
+  const leftImages = [
+    "images/Lenored1.png",
+    "images/Lenored2.png",
+    "images/Lenored3.png",
+    "images/Lenored4.png",
+    "images/Lenored5.png",
+    "images/Lenored6.png",
+    "images/Lenored7.png",
+    "images/Lenored8.png"
+  ];
+
+  const rightImages = [
+    "images/Whimsicle1.png",
+    "images/Whimsicle2.png"
+  ];
+
+  const leftImageElement = document.querySelector('.left-image');
+  const rightImageElement = document.querySelector('.right-image');
+
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let isRightForward = true;
+
+  setInterval(() => {
+    leftIndex = (leftIndex + 1) % leftImages.length;
+    leftImageElement.src = leftImages[leftIndex];
+  }, 1500);
+
+  setInterval(() => {
+    if (isRightForward) {
+      rightIndex = (rightIndex + 1) % rightImages.length;
+      if (rightIndex === rightImages.length - 1) isRightForward = false;
+    } else {
+      rightIndex = (rightIndex - 1 + rightImages.length) % rightImages.length;
+      if (rightIndex === 0) isRightForward = true;
+    }
+    rightImageElement.src = rightImages[rightIndex];
+  }, 1500);
+</script>
+</body>
+</html>
