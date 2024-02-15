@@ -51,54 +51,121 @@
     transition: transform 0.5s ease;
     z-index: 1;
   }
+  .music-button {
+    position: absolute;
+    bottom: 10%; /* Offset from the bottom */
+    left: 10%; /* Offset from the left */
+    max-width: 5%; /* Scalable size */
+    z-index: 3; /* Ensure it's above other elements */
+  }
+  .music-info {
+    position: absolute;
+    bottom: 12.5%; /* Offset from the bottom */
+    left: 20%; /* Offset from the left */
+    z-index: 3; /* Ensure it's above other elements */
+  }
 </style>
 </head>
 <body>
-<div class="container">
-  <img class="background" src="images/background.png" alt="Background">
-  <img class="logo" src="images/Logo.png" alt="Logo">
-  <img class="left-image" src="images/Lenored1.png" alt="Left Image">
-  <img class="right-image" src="images/Whimsicle1.png" alt="Right Image">
-</div>
-<script>
-  const leftImages = [
-    "images/Lenored1.png",
-    "images/Lenored2.png",
-    "images/Lenored3.png",
-    "images/Lenored4.png",
-    "images/Lenored5.png",
-    "images/Lenored6.png",
-    "images/Lenored7.png",
-    "images/Lenored8.png"
-  ];
+  <div class="container">
+    <img class="background" src="images/background.png" alt="Background">
+    <img class="logo" src="images/Logo.png" alt="Logo">
+    <img class="left-image" src="images/Lenored1.png" alt="Left Image">
+    <img class="right-image" src="images/Whimsicle1.png" alt="Right Image">
+    <img class="music-button" src="images/music_off.png" alt="Music Button">
+    <div class="music-info" style="display: none;">
+      <p id="track-name"><a href="#" id="music-link" target="_blank"></a></p>
+    </div>
+  </div>
+  <audio id="background-music">
+    <source src="audio/section1.mp3" type="audio/mpeg">
+    <source src="audio/section2.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+    
+    const leftImages = [
+      "images/Lenored1.png",
+      "images/Lenored2.png",
+      "images/Lenored3.png",
+      "images/Lenored4.png",
+      "images/Lenored5.png",
+      "images/Lenored6.png",
+      "images/Lenored7.png",
+      "images/Lenored8.png"
+    ];
 
-  const rightImages = [
-    "images/Whimsicle1.png",
-    "images/Whimsicle2.png"
-  ];
+    const rightImages = [
+      "images/Whimsicle1.png",
+      "images/Whimsicle2.png"
+    ];
 
-  const leftImageElement = document.querySelector('.left-image');
-  const rightImageElement = document.querySelector('.right-image');
+    const leftImageElement = document.querySelector('.left-image');
+    const rightImageElement = document.querySelector('.right-image');
+    const musicButton = document.querySelector('.music-button');
+    const musicInfo = document.querySelector('.music-info');
+    const trackName = document.getElementById('track-name');
+    const musicLink = document.getElementById('music-link');
+    const backgroundMusic = document.getElementById('background-music');
+    let leftIndex = 0;
+    let rightIndex = 0;
+    let isRightForward = true;
+    let isMusicOn = false; // Initially music is off
 
-  let leftIndex = 0;
-  let rightIndex = 0;
-  let isRightForward = true;
+    setInterval(() => {
+      leftIndex = (leftIndex + 1) % leftImages.length;
+      leftImageElement.src = leftImages[leftIndex];
+    }, 1500);
 
-  setInterval(() => {
-    leftIndex = (leftIndex + 1) % leftImages.length;
-    leftImageElement.src = leftImages[leftIndex];
-  }, 1500);
+    setInterval(() => {
+      if (isRightForward) {
+        rightIndex = (rightIndex + 1) % rightImages.length;
+        if (rightIndex === rightImages.length - 1) isRightForward = false;
+      } else {
+        rightIndex = (rightIndex - 1 + rightImages.length) % rightImages.length;
+        if (rightIndex === 0) isRightForward = true;
+      }
+      rightImageElement.src = rightImages[rightIndex];
+    }, 1500);
 
-  setInterval(() => {
-    if (isRightForward) {
-      rightIndex = (rightIndex + 1) % rightImages.length;
-      if (rightIndex === rightImages.length - 1) isRightForward = false;
-    } else {
-      rightIndex = (rightIndex - 1 + rightImages.length) % rightImages.length;
-      if (rightIndex === 0) isRightForward = true;
-    }
-    rightImageElement.src = rightImages[rightIndex];
-  }, 1500);
-</script>
+    musicButton.addEventListener('click', () => {
+      isMusicOn = !isMusicOn; // Toggle music state
+      musicButton.src = isMusicOn ? "images/music_on.png" : "images/music_off.png";
+      if (isMusicOn) {
+        backgroundMusic.src = "audio/eshopstart.mp3"; // Start with section1
+        backgroundMusic.play();
+        musicInfo.style.display = "block";
+        trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo eShop</a>';
+      } else {
+        backgroundMusic.pause();
+        musicInfo.style.display = "none";
+      }
+    });
+
+    backgroundMusic.addEventListener('ended', () => {
+      if (backgroundMusic.src.endsWith('section1.mp3')) {
+        // After playing section1, start the loop with section2
+        backgroundMusic.src = "audio/section2.mp3";
+        backgroundMusic.play();
+      } else if (backgroundMusic.src.endsWith('section2.mp3')) {
+        // After playing section2, decide whether to play section2 or section3
+        const randomChance = Math.floor(Math.random() * 14); // Random number from 0 to 13
+        if (randomChance === 0) {
+          // Play section3
+          backgroundMusic.src = "audio/eshoploop2.mp3";
+          trackName.innerHTML = '<a href="https://youtu.be/xqvrIg9zrqY" target="_blank">Playing: January 2015 - Nintendo eShop (SiivaGunner)</a>';
+        } else {
+          // Play section2
+          backgroundMusic.src = "audio/eshoploop1.mp3";
+          trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo eShop</a>';
+        }
+        backgroundMusic.play();
+      } else if (backgroundMusic.src.endsWith('section3.mp3')) {
+        // After playing section3, revert back to section2
+        backgroundMusic.src = "audio/eshoploop1.mp3";
+        backgroundMusic.play();
+        trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo eShop</a>';
+      }
+    });
+  </script>
 </body>
 </html>
