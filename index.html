@@ -45,14 +45,18 @@
 
         .left {
             position: absolute;
-            left: 25%;
+            left: 15%;
+            transform: rotate(-5deg);
             transition: transform 0.5s ease;
+            max-width: 50%; /* Limit left image size to 50% of window width */
         }
 
         .right {
             position: absolute;
-            left: 75%;
+            left: 65%;
+            transform: rotate(5deg);
             transition: transform 0.5s ease;
+            max-width: 50%; /* Limit right image size to 50% of window width */
         }
 
         .logo {
