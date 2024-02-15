@@ -40,22 +40,15 @@
             min-width: 100%;
             min-height: 100%;
             z-index: -1;
-            opacity: 0; /* Start with background image hidden */
+            opacity: 1; /* Ensure background image remains visible after animation */
         }
 
         .image {
             position: absolute;
-            bottom: 0;
             transition: transform 0.5s ease;
         }
 
-        .left, .right {
-            transform-origin: bottom;
-            transform: translateY(-20%) rotate(-5deg); /* Tilt slightly */
-        }
-
         .left {
-            left: 50%;
             transform-origin: bottom right;
         }
 
@@ -86,20 +79,20 @@
     </div>
 
     <script>
-        var logo = document.querySelector('.logo');
         var leftImage = document.querySelector('.image.left');
         var rightImage = document.querySelector('.image.right');
 
         function positionImages() {
-            var logoRect = logo.getBoundingClientRect();
-            var logoCenterX = logoRect.left + logoRect.width / 2;
-            var logoBottomY = logoRect.bottom;
+            var windowHeight = window.innerHeight;
+            var windowWidth = window.innerWidth;
+            var logoCenterY = windowHeight / 2;
+            var logoCenterX = windowWidth / 2;
 
-            leftImage.style.left = (logoCenterX - logoRect.width / 2 - 15) + 'px'; // Adjust left image x position
-            leftImage.style.bottom = (logoBottomY - 10) + 'px';
+            leftImage.style.left = (logoCenterX - 10) + 'px'; // Adjust left image x position
+            leftImage.style.top = (logoCenterY + 5) + 'px'; // Adjust left image y position
 
-            rightImage.style.left = (logoCenterX + logoRect.width / 2 + 15) + 'px'; // Adjust right image x position
-            rightImage.style.bottom = (logoBottomY - 10) + 'px';
+            rightImage.style.right = (windowWidth - logoCenterX - 10) + 'px'; // Adjust right image x position
+            rightImage.style.top = (logoCenterY + 5) + 'px'; // Adjust right image y position
         }
 
         window.addEventListener('resize', positionImages);
