@@ -43,21 +43,20 @@
             opacity: 1; /* Ensure background image remains visible after animation */
         }
 
-        .image {
+        .left {
             position: absolute;
+            left: 25%;
             transition: transform 0.5s ease;
         }
 
-        .left {
-            transform-origin: bottom right;
-        }
-
         .right {
-            transform-origin: bottom left;
+            position: absolute;
+            left: 75%;
+            transition: transform 0.5s ease;
         }
 
         .logo {
-            max-width: 40%; /* Limit logo size to 40% of window width */
+            max-width: 50%; /* Limit logo size to 50% of window width */
             height: auto;
             position: absolute;
             top: 50%;
@@ -71,31 +70,14 @@
     <img class="background" src="images/background.png" alt="Background">
     <img class="logo" src="images/Logo.png" alt="Logo">
 
-    <div class="image left">
+    <div class="left">
         <img src="images/Lenored1.png" alt="Lenored">
     </div>
-    <div class="image right">
+    <div class="right">
         <img src="images/Whimsicle1.png" alt="Whimsicle">
     </div>
 
     <script>
-        var leftImage = document.querySelector('.image.left');
-        var rightImage = document.querySelector('.image.right');
-
-        function positionImages() {
-            var windowHeight = window.innerHeight;
-            var windowWidth = window.innerWidth;
-
-            leftImage.style.left = (windowWidth / 2) + 'px'; // Set left image x position to center of window
-            leftImage.style.top = (windowHeight / 2) + 'px'; // Set left image y position to center of window
-
-            rightImage.style.right = (windowWidth / 2) + 'px'; // Set right image x position to center of window
-            rightImage.style.top = (windowHeight / 2) + 'px'; // Set right image y position to center of window
-        }
-
-        window.addEventListener('resize', positionImages);
-        positionImages();
-
         var images = ["Lenored1.png", "Lenored2.png", "Lenored3.png", "Lenored4.png", "Lenored5.png", "Lenored6.png", "Lenored7.png", "Lenored8.png"];
         var lastLenoredIndex = -1;
         var whimsicleIndex = 0;
@@ -110,14 +92,14 @@
         }
 
         function cycleWhimsicleImage() {
-            var img = document.querySelector('.image.right img');
+            var img = document.querySelector('.right img');
             img.src = (whimsicleIndex % 2 === 0) ? 'images/Whimsicle1.png' : 'images/Whimsicle2.png';
             whimsicleIndex++;
         }
 
         setInterval(function() {
             cycleWhimsicleImage();
-            var lenoredImages = document.querySelectorAll('.image.left img');
+            var lenoredImages = document.querySelectorAll('.left img');
             lenoredImages.forEach(function(img) {
                 img.src = 'images/' + getRandomImage();
             });
