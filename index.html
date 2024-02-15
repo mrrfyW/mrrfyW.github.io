@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
             overflow: hidden; /* Hide overflowing parts of the background */
-            animation: fadeIn 2s ease-in-out; /* Fade in animation */
+            animation: fadeIn 2s ease-in-out forwards; /* Fade in animation */
         }
 
         @keyframes fadeIn {
@@ -40,6 +40,7 @@
             min-width: 100%;
             min-height: 100%;
             z-index: -1;
+            opacity: 0; /* Start with background image hidden */
         }
 
         .image {
@@ -94,10 +95,10 @@
             var logoCenterX = logoRect.left + logoRect.width / 2;
             var logoBottomY = logoRect.bottom;
 
-            leftImage.style.left = (logoCenterX - logoRect.width / 2) + 'px';
+            leftImage.style.left = (logoCenterX - logoRect.width / 2 - 15) + 'px'; // Adjust left image x position
             leftImage.style.bottom = (logoBottomY - 10) + 'px';
 
-            rightImage.style.right = (document.documentElement.clientWidth - logoCenterX - logoRect.width / 2) + 'px';
+            rightImage.style.left = (logoCenterX + logoRect.width / 2 + 15) + 'px'; // Adjust right image x position
             rightImage.style.bottom = (logoBottomY - 10) + 'px';
         }
 
