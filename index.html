@@ -8,13 +8,13 @@
 <meta name="keywords" content="mrfurretgo, pokemon, furret, incineroar, haunter, whimsicle, lenored, lenored royle">
 <meta property="og:title" content="MrFurretGO!">
 <meta property="og:description" content="A simple landing page.">
-<meta property="og:image" content="https://mrfurretgo.github.io/images/embedImage.png">
+<meta property="og:image" content="https://mrfurretgo.github.io/images/embedImage.webp">
 <meta property="og:url" content="https://mrfurretgo.github.io">
 <meta name="theme-color" content="#C94B4B">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MrFurretGO!">
 <meta name="twitter:description" content="A simple landing page.">
-<meta name="twitter:image" content="https://mrfurretgo.github.io/images/embedImage.png">
+<meta name="twitter:image" content="https://mrfurretgo.github.io/images/embedImage.webp">
 <link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -100,11 +100,11 @@
 </head>
 <body>
   <div class="container">
-    <img class="background" src="images/background.png" alt="Background">
-    <img class="logo" src="images/Logo.png" alt="Logo">
-    <img class="left-image" src="images/Lenored1.png" alt="Left Image">
-    <img class="right-image" src="images/Whimsicle1.png" alt="Right Image">
-    <img class="music-button" src="images/music_off.png" alt="Music Button">
+    <img class="background" src="images/background.webp" alt="Background">
+    <img class="logo" src="images/Logo.webp" alt="Logo">
+    <img class="left-image" src="images/Lenored1.webp" alt="Left Image">
+    <img class="right-image" src="images/Whimsicle1.webp" alt="Right Image">
+    <img class="music-button" src="images/music_off.webp" alt="Music Button">
     <div class="music-info" style="display: none;">
       <p id="track-name"><a href="#" id="music-link" target="_blank"></a></p>
     </div>
@@ -116,19 +116,19 @@
   <script>
     
     const leftImages = [
-      "images/Lenored1.png",
-      "images/Lenored2.png",
-      "images/Lenored3.png",
-      "images/Lenored4.png",
-      "images/Lenored5.png",
-      "images/Lenored6.png",
-      "images/Lenored7.png",
-      "images/Lenored8.png"
+      "images/Lenored1.webp",
+      "images/Lenored2.webp",
+      "images/Lenored3.webp",
+      "images/Lenored4.webp",
+      "images/Lenored5.webp",
+      "images/Lenored6.webp",
+      "images/Lenored7.webp",
+      "images/Lenored8.webp"
     ];
 
     const rightImages = [
-      "images/Whimsicle1.png",
-      "images/Whimsicle2.png"
+      "images/Whimsicle1.webp",
+      "images/Whimsicle2.webp"
     ];
 
     const leftImageElement = document.querySelector('.left-image');
@@ -161,7 +161,7 @@
 
     musicButton.addEventListener('click', () => {
       isMusicOn = !isMusicOn; // Toggle music state
-      musicButton.src = isMusicOn ? "images/music_on.png" : "images/music_off.png";
+      musicButton.src = isMusicOn ? "images/music_on.webp" : "images/music_off.webp";
       if (isMusicOn) {
         backgroundMusic.src = "audio/eshopstart.mp3"; // Start with section1
         backgroundMusic.play();
