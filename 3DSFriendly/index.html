@@ -37,6 +37,10 @@
       imageIndex = (imageIndex + 1) % imageSources.length;
       imageElement.src = imageSources[imageIndex];
     }, 750); // 0.75 seconds
+    
+    window.onload = function() {
+      cycleImages();
+    };
   </script>
 </body>
 </html>
