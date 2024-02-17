@@ -33,14 +33,13 @@
     var imageIndex = 0;
     var imageElement = document.getElementById("image");
 
-    setInterval(function() {
+    function cycleImages() {
       imageIndex = (imageIndex + 1) % imageSources.length;
       imageElement.src = imageSources[imageIndex];
-    }, 750); // 0.75 seconds
-    
-    window.onload = function() {
-      cycleImages();
-    };
+      setTimeout(cycleImages, 750); // 0.75 seconds
+    }
+
+    cycleImages();
   </script>
 </body>
 </html>
