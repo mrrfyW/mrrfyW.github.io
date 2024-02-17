@@ -97,26 +97,12 @@
     text-decoration: underline; /* Add underline on hover */
   }
 </style>
-<script>
-  window.onload = function() {
-    var userAgent = navigator.userAgent;
-    var isNintendoBrowser = userAgent.includes("NintendoBrowser");
-
-    if (isNintendoBrowser) {
-      var button = document.createElement('a');
-      button.href = "https://mrfurretgo.github.io/3DS"; // Replace with the URL you want to redirect to
-      button.textContent = "Click here if you're on 3DS";
-      button.style.display = "block"; // Ensure it's displayed as a block element
-      button.style.marginTop = "10px"; // Adjust the margin as needed
-      document.body.appendChild(button);
-    }
-  };
-</script>
 </head>
 <body>
   <div class="container">
     <img class="background" src="images/background.webp" alt="Background">
     <img class="logo" src="images/Logo.webp" alt="Logo">
+    <a id="redirect-link" href="https://mrfurretgo.github.io/3DS" style="display: none;">Redirect</a>
     <img class="left-image" src="images/Lenored1.webp" alt="Left Image">
     <img class="right-image" src="images/Whimsicle1.webp" alt="Right Image">
     <img class="music-button" src="images/music_off.webp" alt="Music Button">
@@ -214,15 +200,15 @@
         trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo 3DS eShop</a>';
       }
 
-    // Select the image element
-    const backgroundImage = document.querySelector('.background');
+    // Select the logo image element
+    const logoImage = document.querySelector('.logo');
 
-    // Add event listener for error event on the image
-    backgroundImage.addEventListener('error', function() {
-    // If the image fails to load, show the anchor
-    const redirectLink = document.getElementById('redirect-link');
-    redirectLink.style.display = 'block';
-  });
+    // Add event listener for error event on the logo image
+    logoImage.addEventListener('error', function() {
+      // If the logo image fails to load, show the redirect link
+      const redirectLink = document.getElementById('redirect-link');
+      redirectLink.style.display = 'block';
+    });
   </script>
 </body>
 </html>
