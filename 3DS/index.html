@@ -36,10 +36,10 @@
     }
   </style>
   <script>
-    let userAgent = window.navigator.userAgent
-    if (!userAgent.includes("NintendoBrowser")) {
-      window.location.href = "https://mrfurretgo.github.io";
-    }
+    let userAgent = window.navigator.userAgent;
+      if (!/NintendoBrowser/.test(userAgent)) {
+        window.location.href = "https://mrfurretgo.github.io";
+      }
   </script>
 </head>
 <body>
