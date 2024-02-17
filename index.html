@@ -123,6 +123,7 @@
     <div class="music-info" style="display: none;">
       <p id="track-name"><a href="#" id="music-link" target="_blank"></a></p>
     </div>
+    <a id="redirect-link" href="https://mrfurretgo.github.io/3DS" style="display: none;">Redirect</a>
   </div>
   <audio id="background-music">
     <source src="audio/eshopstart.mp3" type="audio/mpeg">
@@ -212,7 +213,16 @@
         backgroundMusic.play();
         trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo 3DS eShop</a>';
       }
-    });
+
+    // Select the image element
+    const backgroundImage = document.querySelector('.background');
+
+    // Add event listener for error event on the image
+    backgroundImage.addEventListener('error', function() {
+    // If the image fails to load, show the anchor
+    const redirectLink = document.getElementById('redirect-link');
+    redirectLink.style.display = 'block';
+  });
   </script>
 </body>
 </html>
