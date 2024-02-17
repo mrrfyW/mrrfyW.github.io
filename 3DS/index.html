@@ -35,6 +35,12 @@
       max-width: 400px;
     }
   </style>
+  <script>
+    let userAgent = navigator.userAgent;
+    if (!userAgent.includes("NintendoBrowser")) {
+      window.location.href = "https://mrfurretgo.github.io";
+    }
+  </script>
 </head>
 <body>
   <div style="padding: 2px; text-align: center;">
