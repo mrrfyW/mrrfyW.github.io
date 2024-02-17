@@ -98,9 +98,19 @@
   }
 </style>
 <script>
-  if (navigator.userAgent.includes("NintendoBrowser")) {
-    window.location.href = "https://mrfurretgo.github.io/3DS";
-  }
+  window.onload = function() {
+    var userAgent = navigator.userAgent;
+    var isNintendoBrowser = userAgent.includes("NintendoBrowser");
+
+    if (isNintendoBrowser) {
+      var button = document.createElement('a');
+      button.href = "https://mrfurretgo.github.io/3DS"; // Replace with the URL you want to redirect to
+      button.textContent = "Click here if you're on 3DS";
+      button.style.display = "block"; // Ensure it's displayed as a block element
+      button.style.marginTop = "10px"; // Adjust the margin as needed
+      document.body.appendChild(button);
+    }
+  };
 </script>
 </head>
 <body>
