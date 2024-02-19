@@ -40,16 +40,16 @@
   }
   .logo {
     position: absolute;
-    top: 50%;
+    top: 47.5%;
     left: 50%;
     transform: translate(-50%, -35%);
     width: 50%;
-    max-width: 959px; /* half of logo width */
+    max-width: 50%; /* half of logo width */
     z-index: 2;
   }
   .left-image {
     position: absolute;
-    top: 50%; /* Center vertically */
+    top: 48.5%; /* Center vertically */
     left: calc(50% - 35.5%); /* Positions at 15% left of the logo width */
     max-width: 20%;
     transform: translateY(-50%);
@@ -58,7 +58,7 @@
   }
   .right-image {
     position: absolute;
-    top: 50%; /* Center vertically */
+    top: 47.5%; /* Center vertically */
     right: calc(50% - 35.5%); /* Positions at 15% right of the logo width */
     max-width: 15%;
     transform: translateY(-50%);
@@ -69,13 +69,13 @@
     position: absolute;
     bottom: 2.5%; /* Offset from the bottom */
     left: 2.5%; /* Offset from the left */
-    max-width: 10%; /* Scalable size */
+    max-width: 7.5%; /* Scalable size */
     z-index: 3; /* Ensure it's above other elements */
   }
   .music-info {
     position: absolute;
     bottom: 2.5%; /* Offset from the bottom */
-    left: 15%; /* Offset from the left */
+    left: 11.15%; /* Offset from the left */
     width: 80%; /* Adjust width as needed */
     z-index: 3; /* Ensure it's above other elements */
   }
@@ -96,28 +96,82 @@
   #track-name a:hover {
     text-decoration: underline; /* Add underline on hover */
   }
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative
+  }
+  .about-image, .find-image, .projects-image {
+    position: absolute;
+    top: 47.5%;
+    width: 30%;
+    max-width: 15%;
+    z-index: 3;
+  }
+  .about-image {
+    left: 35%;
+    transform: translate(-50%, 125%);
+  }
+  .find-image {
+    left: 50%;
+    transform: translate(-50%, 35%);
+  }
+  .projects-image {
+    left: 65%;
+    transform: translate(-50%, 125%);
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999; /* Ensure it's on top of other content */
+    opacity: 1; /* Initially fully opaque */
+    transition: opacity 0.5s; /* Apply a 0.5s transition for opacity */
+  }
 </style>
 </head>
 <body>
+  <div class="overlay"></div>
   <div class="container">
     <img class="background" src="images/background.webp" alt="Background">
-    <a href="https://mrfurretgo.github.io/3DS">
+    <a href="3DS/index.html">
       <img class="logo" src="images/Logo.webp" alt="Click if 3DS User">
     </a>
     <img class="left-image" src="images/Lenored1.webp" alt="Left Image">
     <img class="right-image" src="images/Whimsicle1.webp" alt="Right Image">
+    <a href="https://mrfurretgo.github.io/aboutme/">
+      <img class="about-image" src="images/aboutme.webp" alt="About Me">
+    </a>
+    <a href="https://mrfurretgo.github.io/wheretofindme/">
+      <img class="find-image" src="images/wheretofind.webp" alt="Where to Find Me">
+    </a>
+    <a href="https://mrfurretgo.github.io/projects/">
+      <img class="projects-image" src="images/projects.webp" alt="Projects">
+    </a>
     <img class="music-button" src="images/music_off.webp" alt="Music Button">
     <div class="music-info" style="display: none;">
       <p id="track-name"><a href="#" id="music-link" target="_blank"></a></p>
     </div>
-    <a id="redirect-link" href="https://mrfurretgo.github.io/3DS" style="display: none;">Redirect</a>
   </div>
   <audio id="background-music">
     <source src="audio/eshopstart.mp3" type="audio/mpeg">
     <source src="audio/eshoploop1.mp3" type="audio/mpeg">
+    <source src="audio/eshoploop2.mp3" type="audio/mpeg">
   </audio>
   <script>
-
+    window.addEventListener('load', function() {
+      const overlay = document.querySelector('.overlay');
+      overlay.style.opacity = 0; // Fade out the overlay
+      setTimeout(() => {
+        overlay.style.display = 'none'; // Hide the overlay after fading out
+      }, 500); // Wait for the duration of the transition (0.5s)
+    });
     const leftImages = [
       "images/Lenored1.webp",
       "images/Lenored2.webp",
@@ -147,9 +201,13 @@
     let isMusicOn = false; // Initially music is off
 
     setInterval(() => {
-      leftIndex = (leftIndex + 1) % leftImages.length;
+      let newIndex;
+      do {
+          newIndex = Math.floor(Math.random() * leftImages.length);
+      } while (newIndex === leftIndex); // Ensure newIndex is different from the previous index
+      leftIndex = newIndex;
       leftImageElement.src = leftImages[leftIndex];
-    }, 1500);
+    }, 750);
 
     setInterval(() => {
       if (isRightForward) {
@@ -160,7 +218,7 @@
         if (rightIndex === 0) isRightForward = true;
       }
       rightImageElement.src = rightImages[rightIndex];
-    }, 1500);
+    }, 750);
 
     musicButton.addEventListener('click', () => {
       isMusicOn = !isMusicOn; // Toggle music state
@@ -177,32 +235,40 @@
     });
 
     backgroundMusic.addEventListener('ended', () => {
-      if (backgroundMusic.src.endsWith('eshopstart.mp3')) {
-        // After playing section1, start the loop with section2
-        backgroundMusic.src = "audio/eshoploop1.mp3";
-        backgroundMusic.play();
-      } else if (backgroundMusic.src.endsWith('eshoploop1.mp3')) {
-        // After playing section2, decide whether to play section2 or section3
-        const randomChance = Math.floor(Math.random() * 7); // Random number from 0 to 13
-        if (randomChance === 0) {
-          // Play section3
-          backgroundMusic.src = "audio/eshoploop2.mp3";
-          trackName.innerHTML = '<a href="https://youtu.be/xqvrIg9zrqY" target="_blank">Playing: January 2015 - Nintendo 3DS eShop (SiivaGunner)</a>';
-        } else {
-          // Play section2
-          backgroundMusic.src = "audio/eshoploop1.mp3";
-          trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo 3DS eShop</a>';
-        }
-        backgroundMusic.play();
-      } else if (backgroundMusic.src.endsWith('eshoploop2.mp3')) {
-        // After playing section3, revert back to section2
-        backgroundMusic.src = "audio/eshoploop1.mp3";
-        backgroundMusic.play();
-        trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo 3DS eShop</a>';
-      }
+    // Define the sections with their URLs and track names
+    const sections = [
+        { src: "audio/eshoploop1.mp3", trackURL: "https://youtu.be/q8FL2crrVV4", trackName: "Playing: January 2015 - Nintendo 3DS eShop" },
+        { src: "audio/eshoploop2.mp3", trackURL: "https://youtu.be/xqvrIg9zrqY", trackName: "Playing: January 2015 - Nintendo 3DS eShop (SiivaGunner)" }
+    ];
 
+    // Initialize the last played section index
+    let lastPlayedIndex = -1;
+
+    backgroundMusic.addEventListener('ended', () => {
+        // Determine if we should play a different section
+        const shouldPlayDifferentSection = Math.random() < 1 / 2;
+
+        if (shouldPlayDifferentSection) {
+            // Select a random section other than the last played one
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * sections.length);
+            } while (randomIndex === lastPlayedIndex);
+        
+            const randomSection = sections[randomIndex];
+
+            // Set the background music source and track name
+            backgroundMusic.src = randomSection.src;
+            trackName.innerHTML = `<a href="${randomSection.trackURL}" target="_blank">${randomSection.trackName}</a>`;
+
+            // Update the last played section index
+            lastPlayedIndex = randomIndex;
+        }
+
+        // Play the background music
+        backgroundMusic.play();
     });
+  });
   </script>
 </body>
 </html>
-// hi
