@@ -75,7 +75,9 @@
   .music-info {
     position: absolute;
     bottom: 2.5%; /* Offset from the bottom */
-    left: 11.15%; /* Offset from the left */
+    left: 11.5%; /* Offset from the left */
+    transform: translateX(10%);
+    transform: translateY(-100%);
     width: 80%; /* Adjust width as needed */
     z-index: 3; /* Ensure it's above other elements */
   }
@@ -234,40 +236,36 @@
       }
     });
 
-    backgroundMusic.addEventListener('ended', () => {
-    // Define the sections with their URLs and track names
-    const sections = [
-        { src: "audio/eshoploop1.mp3", trackURL: "https://youtu.be/q8FL2crrVV4", trackName: "Playing: January 2015 - Nintendo 3DS eShop" },
-        { src: "audio/eshoploop2.mp3", trackURL: "https://youtu.be/xqvrIg9zrqY", trackName: "Playing: January 2015 - Nintendo 3DS eShop (SiivaGunner)" }
-    ];
+  // Define the sections with their URLs and track names
+  const sections = [
+      { src: "audio/eshoploop1.mp3", trackURL: "https://youtu.be/q8FL2crrVV4", trackName: "Playing: January 2015 - Nintendo 3DS eShop" },
+      { src: "audio/eshoploop2.mp3", trackURL: "https://youtu.be/xqvrIg9zrqY", trackName: "Playing: January 2015 - Nintendo 3DS eShop (SiivaGunner)" }
+  ];
 
-    // Initialize the last played section index
-    let lastPlayedIndex = -1;
+  // Initialize the current section index
+  let currentSectionIndex = 0;
 
-    backgroundMusic.addEventListener('ended', () => {
-        // Determine if we should play a different section
-        const shouldPlayDifferentSection = Math.random() < 1 / 2;
+  backgroundMusic.addEventListener('ended', () => {
+      // Randomly decide whether to play a different section
+      const shouldPlayDifferentSection = Math.random() < 1 / 14;
 
-        if (shouldPlayDifferentSection) {
-            // Select a random section other than the last played one
-            let randomIndex;
-            do {
-                randomIndex = Math.floor(Math.random() * sections.length);
-            } while (randomIndex === lastPlayedIndex);
-        
-            const randomSection = sections[randomIndex];
+      // Determine the next section index
+      let nextSectionIndex;
+      if (shouldPlayDifferentSection) {
+          nextSectionIndex = (currentSectionIndex + 1) % sections.length;
+      } else {
+          nextSectionIndex = currentSectionIndex;
+      }
 
-            // Set the background music source and track name
-            backgroundMusic.src = randomSection.src;
-            trackName.innerHTML = `<a href="${randomSection.trackURL}" target="_blank">${randomSection.trackName}</a>`;
+      // Set the next section
+      backgroundMusic.src = sections[nextSectionIndex].src;
+      trackName.innerHTML = `<a href="${sections[nextSectionIndex].trackURL}" target="_blank">${sections[nextSectionIndex].trackName}</a>`;
 
-            // Update the last played section index
-            lastPlayedIndex = randomIndex;
-        }
+      // Ensure the music player plays
+      backgroundMusic.play();
 
-        // Play the background music
-        backgroundMusic.play();
-    });
+      // Update the current section index
+      currentSectionIndex = nextSectionIndex;
   });
   </script>
 </body>
