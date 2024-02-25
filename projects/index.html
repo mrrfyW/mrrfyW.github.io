@@ -1,13 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; URL=https://mrfurretgo.github.io">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title, favicon, og:image/twitter:image, twitter:card, theme-color, and keywords stay the same per html, og:url is for the current site -->
+    <title>MrFurretGO</title>
+    <meta name="description" content="Projects by MrFurretGO.">
+    <meta name="keywords" content="mrfurretgo, pokemon, furret, incineroar, haunter, whimsicle, lenored, lenored royl">
+    <meta property="og:title" content="MrFurretGO Projects">
+    <meta property="og:description" content="Projects by MrFurretGO.">
+    <meta property="og:image" content="../images/embedImage.webp">
+    <meta property="og:url" content="https://mrfurretgo.github.io/projects">
+    <meta name="theme-color" content="#C94B4B">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MrFurretGO Projects">
+    <meta name="twitter:description" content="Projects by MrFurretGO.">
+    <meta name="twitter:image" content="../images/embedImage.webp">
+    <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Poppins', sans-serif;
+		}
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            animation: fade-in 0.5s ease;
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        #back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 999; /* Keep this style per html */
+        }
+        #projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 100px; /* Adjust as needed */
+            padding: 0 20px; /* Adjust as needed */
+        }
+
+        .projects-box {
+			width: calc(25% - 10px); /* Adjust as needed */
+			margin-bottom: 20px;
+			padding: 30px;
+			margin-bottom: 20px;
+			border: 5px solid #7018b8;
+			border-radius: 25px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			background: linear-gradient(135deg, #af47ff, #e86f6d);
+			display: flex !important;
+			transform: translateY(20px); */
+			justify-content: space-between;
+			align-items: center;
+			flex-direction: row-reverse;
+		}
+
+        .projects-box img {
+            width: 70px; /* Adjust as needed */
+            height: 70px; /* Adjust as needed */
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+			.projects-box h2 {
+				margin: 0 0 10px 0;
+				font-size: 20px;
+				color: #ffffff;
+			}
+	
+			.projects-box p {
+				margin: 0 0 10px 0;
+				color: #ffffff;
+			}
+	
+			.projects-box a {
+				color: #e6d1b8;
+				text-decoration: none;
+			}
+	
+				.projects-box a:hover {
+					text-decoration: underline;
+				}
+    </style>
+	<script src="./assets/app.js"></script>
 </head>
 <body>
-  <p>If you are not redirected, <a href="https://mrfurretgo.github.io">click here</a>.</p>
+    <a id="back-button" href="https://mrfurretgo.github.io">
+        <img src="../images/back.webp" alt="Back" style="width: 35%; height: auto;">
+    </a>
+	<div class=background>
+		<img class="background" src="../images/background.webp" alt="Background">
+    
+	<div id="projects-container"></div>
 </body>
 </html>
-# Not done yet
