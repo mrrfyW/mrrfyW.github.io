@@ -60,24 +60,21 @@
 	    position: relative;
 	    margin: 0 auto; /* Center the button table horizontally */
 	}
-        .button-row {
-            display: flex;
+	.button-row {
+	    display: flex;
 	    flex-wrap: wrap;
-            justify-content: center; 
-            width: 100%
-        }
-	.button:hover {
-	    background-color: rgba(255, 255, 255, 0.1);
-	    border-color: rgba(255, 255, 255, 0.5);
+	    justify-content: center; 
+	    width: 100%
 	}
 	.button-cell {
-	    flex: 1;
-	    margin: 5px;
-	    display: flex;
-	    justify-content: center;
-	    background: linear-gradient(135deg, #af47ff, #e86f6d); /* Gradient background */
-	    border: 5px solid #7018b8;
-	    border-radius: 20px;
+ 	   flex: 1;
+ 	   margin: 5px;
+ 	   display: flex;
+ 	   justify-content: center;
+ 	   background: linear-gradient(135deg, #af47ff, #e86f6d); /* Gradient background */
+ 	   border: 5px solid #7018b8;
+ 	   border-radius: 20px;
+ 	   overflow: hidden; /* Ensure borders are visible */
 	}
 	.button {
 	    position: relative;
@@ -95,15 +92,15 @@
 	    border-color: rgba(255, 255, 255, 0.5);
 	}
 	.button img {
-	    width: 100px;
-	    height: 100px;
+	    width: 50px; /* Adjust image size */
+	    height: 50px; /* Adjust image size */
 	    margin-right: 10px;
 	    z-index: 2;
-	    border-radius: 50px;
+	    border-radius: 50%; /* Ensure rounded corners for circular images */
 	}
-        .details {
-            font-size: 16px;
-        }
+	.details {
+	    font-size: 16px;
+	}
     </style>
 </head>
 <body>
