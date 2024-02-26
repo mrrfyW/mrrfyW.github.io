@@ -49,19 +49,20 @@
             left: 20px;
             z-index: 999;
         }
-        .button-table {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center horizontally */
-            justify-content: center; /* Center vertically */
-            height: 100vh;
-            width: 75%; /* Adjust width as needed */
-            position: relative; /* Set position to relative */
-            left: 2.5%; /* Move 5% to the left */
-            margin: 0;
-        }
+	.button-table {
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	    height: 100vh;
+	    width: 90%; /* Adjust width as needed */
+	    max-width: 600px; /* Limit maximum width */
+	    position: relative;
+	    margin: 0 auto; /* Center the button table horizontally */
+	}
         .button-row {
             display: flex;
+	    flex-wrap: wrap;
             justify-content: center; 
             width: 100%
         }
@@ -74,19 +75,21 @@
 	    margin: 5px;
 	    display: flex;
 	    justify-content: center;
-	    background-color: transparent;
+	    background: linear-gradient(135deg, #af47ff, #e86f6d); /* Gradient background */
+	    border: 5px solid #7018b8;
+	    border-radius: 20px;
 	}
 	.button {
 	    position: relative;
 	    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	    padding: 10px 20px; /* Adjust padding for button size */
-	    border-radius: 40px;
-	    background-color: #af47ff; /* Set desired button color */
-	    border: 2px solid #7018b8; /* Add border for button */
+	    border-radius: 20px;
+	    background-color: transparent;
+	    border: none;
 	    transition: background-color 0.3s ease, border-color 0.3s ease;
 	    display: flex;
 	    align-items: center;
-	    justify-content: center; /* Center the content horizontally */
+	    justify-content: center;
 	    text-decoration: none;
 	    color: black;
 	}
@@ -99,9 +102,10 @@
 	    height: 30px;
 	    margin-right: 10px;
 	    z-index: 2;
+	    border-radius: 50px;
 	}
         .details {
-            font-size: 2vw;
+            font-size: 16px;
             font-weight: bold;
         }
     </style>
@@ -115,28 +119,28 @@
         <div class="button-row">
             <div class="button-cell">
                 <a href="https://github.com/pokermmon/pokermmon.github.io/" class="button">
-                    <img src="https://i.ibb.co/yBb5XSq/horizon.png" alt="Pokemon Horizons Episode List" width="30" height="30">
-                    <div class="details" style="white-space: nowrap;">
-                        <span>Pokemon Horizons Episode List<br>
-			Join the journey of<br>Liko and Roy on their<br>adventures with this website!</span>
+                    <img src="https://i.ibb.co/yBb5XSq/horizon.png" alt="Pokemon Horizons Episode List">
+                    <div class="details">
+                        <span style="font-weight: bold;">Pokemon Horizons Episode List</span><br>
+                        Join the journey of<br>Liko and Roy on their<br>adventures with this website!
                     </div>
                 </a>
             </div>
             <div class="button-cell">
                 <a href="https://rec.net/room/SimpleSnipersVSRunners" class="button">
-                    <img src="https://i.ibb.co/Jczwz6M/simplesniper.png" alt="Twitch" width="30" height="30">
-                    <div class="details" style="white-space: nowrap;">
-                        Simple Snipers VS Runners (Rec Room)<br>
+                    <img src="https://i.ibb.co/Jczwz6M/simplesniper.png" alt="Twitch">
+                    <div class="details">
+                        <span style="font-weight: bold;">Simple Snipers VS Runners (Rec Room)</span><br>
                         A (somewhat) high quality<br>recreation of a <br>low-effort room.
                     </div>
                 </a>
             </div>
             <div class="button-cell">
                 <a href="https://mrfurretgo.github.io" class="button">
-                    <img src="https://i.ibb.co/zHDQd1k/otherimage.png" alt="Carrd" width="30" height="30">
-                    <div class="details" style="white-space: nowrap;">
-                        MrFurretGO's Custom Site<br>
-			Making a personal site<br>is easy with ChatGPT<br>and some minor adjustments.
+                    <img src="https://i.ibb.co/zHDQd1k/otherimage.png" alt="Carrd">
+                    <div class="details">
+                        <span style="font-weight: bold;">MrFurretGO's Custom Site</span><br>
+                        Making a personal site<br>is easy with ChatGPT<br>and some minor adjustments.
                     </div>
                 </a>
             </div>
