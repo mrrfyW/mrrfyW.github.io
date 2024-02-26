@@ -20,14 +20,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
     <style>
-		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-			font-family: 'Poppins', sans-serif;
-		}
         body {
             margin: 0;
             padding: 0;
@@ -55,68 +47,105 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            z-index: 999; /* Keep this style per html */
+            z-index: 999;
         }
-        #projects-container {
+        .button-table {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: 100px; /* Adjust as needed */
-            padding: 0 20px; /* Adjust as needed */
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            height: 100vh;
+            width: 90%; /* Adjust width as needed */
+            position: relative; /* Set position to relative */
+            left: 2.5%; /* Move 5% to the left */
+            margin: 0;
+        }
+        .button-row {
+            display: flex;
+            justify-content: center; 
+            width: 100%
+        }
+        .button-cell {
+            flex: 1;
+            margin: 5px;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+	    background: linear-gradient(135deg, #af47ff, #e86f6d);
+	    border: 5px solid #7018b8;
+        }
+        .button-cell:first-child {
+            justify-content: flex-end; /* Align left buttons to the right */
         }
 
-        .projects-box {
-			width: calc(25% - 10px); /* Adjust as needed */
-			margin-bottom: 20px;
-			padding: 30px;
-			margin-bottom: 20px;
-			border: 5px solid #7018b8;
-			border-radius: 25px;
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-			background: linear-gradient(135deg, #af47ff, #e86f6d);
-			display: flex !important;
-			transform: translateY(20px); */
-			justify-content: space-between;
-			align-items: center;
-			flex-direction: row-reverse;
-		}
-
-        .projects-box img {
-            width: 70px; /* Adjust as needed */
-            height: 70px; /* Adjust as needed */
-            border-radius: 50%;
-            margin-left: 10px;
+        .button-cell:last-child {
+            justify-content: flex-start; /* Align right buttons to the left */
         }
-
-			.projects-box h2 {
-				margin: 0 0 10px 0;
-				font-size: 20px;
-				color: #ffffff;
-			}
-	
-			.projects-box p {
-				margin: 0 0 10px 0;
-				color: #ffffff;
-			}
-	
-			.projects-box a {
-				color: #e6d1b8;
-				text-decoration: none;
-			}
-	
-				.projects-box a:hover {
-					text-decoration: underline;
-				}
+        .button {
+            position: relative;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            padding: 3.5% 5.75%; /* Adjust these percentages as needed */
+            border-radius: 40px;
+            background-color: transparent;
+            border: 20px solid;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the content horizontally */
+            text-decoration: none;
+            color: black;
+        }
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            z-index: 2;
+	    border-radius: 50px;
+        }
+        .details {
+            font-size: 2vw;
+            font-weight: bold;
+        }
     </style>
-	<script src="./assets/app.js"></script>
 </head>
 <body>
     <a id="back-button" href="https://mrfurretgo.github.io">
         <img src="../images/back.webp" alt="Back" style="width: 35%; height: auto;">
     </a>
-	<div class=background>
-		<img class="background" src="../images/background.webp" alt="Background">
-    
-	<div id="projects-container"></div>
+    <div class="button-table">
+        <img class="background" src="../images/background.webp" alt="Background">
+        <div class="button-row">
+            <div class="button-cell">
+                <a href="https://github.com/pokermmon/pokermmon.github.io/" class="button">
+                    <img src="https://i.ibb.co/yBb5XSq/horizon.png" alt="Pokemon Horizons Episode List" width="30" height="30">
+                    <div class="details" style="white-space: nowrap;">
+                        <span>Pokemon Horizons Episode List<br>
+			Join the journey of<br>Liko and Roy on their<br>adventures with this website!</span>
+                    </div>
+                </a>
+            </div>
+            <div class="button-cell">
+                <a href="https://rec.net/room/SimpleSnipersVSRunners" class="button">
+                    <img src="https://i.ibb.co/Jczwz6M/simplesniper.png" alt="Twitch" width="30" height="30">
+                    <div class="details" style="white-space: nowrap;">
+                        Simple Snipers VS Runners (Rec Room)<br>
+                        A (somewhat) high quality<br>recreation of a <br>low-effort room.
+                    </div>
+                </a>
+            </div>
+            <div class="button-cell">
+                <a href="https://mrfurretgo.github.io" class="button">
+                    <img src="https://i.ibb.co/zHDQd1k/otherimage.png" alt="Carrd" width="30" height="30">
+                    <div class="details" style="white-space: nowrap;">
+                        MrFurretGO's Custom Site<br>
+			Making a personal site<br>is easy with ChatGPT<br>and some minor adjustments.
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
