@@ -65,29 +65,32 @@
             justify-content: center; 
             width: 100%
         }
-        .button-cell {
-            flex: 1;
-            margin: 5px;
-            display: inline-block; /* Change display property to inline-block */
-            background-color: transparent; /* Remove gradient background */
-            border: none; /* Remove border */
-        }
-        .button {
-            padding: 10px 20px; /* Adjust padding for button size */
-            background-color: #af47ff; /* Set desired button color */
-            border: 2px solid #7018b8; /* Add border for button */
-            border-radius: 20px; /* Add border-radius for rounded corners */
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: black;
-        }
-        .button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
+	.button {
+	    padding: 10px 20px; /* Adjust padding for button size */
+	    background-color: #af47ff; /* Set desired button color */
+	    border: 2px solid #7018b8; /* Add border for button */
+	    border-radius: 20px; /* Add border-radius for rounded corners */
+	    transition: background-color 0.3s ease, border-color 0.3s ease;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    text-decoration: none;
+	    color: black;
+	}
+
+	.button:hover {
+	    background-color: rgba(255, 255, 255, 0.1);
+	    border-color: rgba(255, 255, 255, 0.5);
+	}
+
+	.button-cell {
+	    flex: 1;
+	    margin: 5px;
+	    display: flex;
+	    justify-content: center;
+	    background-color: transparent;
+	}
+
         .button img {
             width: 30px;
             height: 30px;
