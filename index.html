@@ -136,6 +136,14 @@
     opacity: 1; /* Initially fully opaque */
     transition: opacity 0.5s; /* Apply a 0.5s transition for opacity */
   }
+  .characterlist-image {
+    position: absolute;
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, 250%); /* Adjust position under the previous three buttons */
+    width: 30%;
+    max-width: 15%;
+    z-index: 3;
+  }
 </style>
 </head>
 <body>
@@ -152,10 +160,12 @@
     </a>
     <a href="https://MrrfyW.github.io/wheretofindme/">
       <img class="find-image" src="images/wheretofind.webp" alt="Where to Find Me">
-
     </a>
     <a href="https://MrrfyW.github.io/projects/">
       <img class="projects-image" src="images/projects.webp" alt="Projects">
+    </a>
+    <a href="https://MrrfyW.github.io/characterlist/">
+      <img class="characterlist-image" src="images/characterlist.webp" alt="Character List">
     </a>
     <img class="music-button" src="images/music_off.webp" alt="Music Button">
     <div class="music-info" style="display: none;">
