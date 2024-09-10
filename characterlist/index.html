@@ -1,11 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Not available</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character List</title>
+    <meta name="description" content="Character List for MrrfyW's Characters.">
+    <meta name="keywords" content="MrrfyW, character list, gengar, haunter, hypno, pokemon, lenored royle, ">
+    <meta property="og:title" content="Character List">
+    <meta property="og:description" content="Character List for MrrfyW's Characters.">
+    <meta property="og:image" content="../images/embedImage.webp">
+    <meta property="og:url" content="https://mrrfyw.github.io/character-list">
+    <meta name="theme-color" content="#C94B4B">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Character List">
+    <meta name="twitter:description" content="Character List for MrrfyW's Characters.">
+    <meta name="twitter:image" content="https://mrrfyw.github.io/images/embedImage.webp">
+    <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            animation: fade-in 0.5s ease;
+            font-family: 'Open Sans', sans-serif;
+            color: white;
+            position: relative;
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        #back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+        .character-list {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .character {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 40px;
+        }
+        .character:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        /* Common character image settings */
+        .character img {
+            max-width: 100%;
+            width: 300px;  /* Default width */
+            border-radius: 20px;
+            object-fit: contain;
+            transition: transform 0.5s ease; /* Smooth transition for rotation */
+        }
+        .character img:hover {
+            transform: rotate(10deg); /* Rotate image by 15 degrees on hover */
+        }
+
+        /* Specific adjustments for Andrew and Brawno */
+        .character.andrew img,
+        .character.brawno img {
+            width: 200px; /* Reduced size for Andrew and Brawno images */
+        }
+
+        .character-info {
+            max-width: 60%;
+            text-align: center; /* Center text within the container */
+            padding: 10px;
+            border: 5px solid #8e64db; /* Light purple border */
+            border-radius: 10px;
+            background: linear-gradient(145deg, #a888e6, #8e49b6); /* Gradient background */
+            background-color: rgb(58, 16, 105); /* Subtle background to make text stand out */
+        }
+        .character-info h2 {
+            margin: 0 0 10px;
+            font-family: 'Raleway', sans-serif; /* Character Name Font */
+            font-size: 30px;
+            font-weight: 700;
+            color: #f5f5f5;
+        }
+        .character-info p {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif; /* Description Font */
+            font-size: 18px;
+            line-height: 1.5;
+            color: #e0e0e0;
+        }
+    </style>
 </head>
 <body>
-  <p>Will update soon - mrrfyW</p>
+    <a id="back-button" href="https://mrrfyw.github.io">
+        <img src="../images/back.webp" alt="Back" style="width: 35%; height: auto;">
+    </a>
+    <div class="character-list">
+        <img class="background" src="../images/background.webp" alt="Background">
+
+        <div class="character andrew">
+          <img src="./assets/Andrew.png" alt="Andrew the Gengar">
+            <div class="character-info">
+                <h2>Andrew the Gengar</h2>
+                <p>Andrew is basically me but as a Gengar. He's a big nerd when it comes to technology, research, and gaming. However, he can be a bit lazy when it comes to school and tends to just lounge around in bed. He enjoys socializing but doesn’t start most conversations; instead, he prefers to join them.</p>
+            </div>
+        </div>
+
+        <div class="character">
+            <img src="./assets/Lenored.png" alt="Lenored Royle">
+            <div class="character-info">
+                <h2>Lenored Royle</h2>
+                <p>Lenored is one of the first to meet Andrew and interacted with him the most. Nowadays, Lenored travels across the state, from forests to cities, talking to trainers about what they’ve encountered during their journeys.</p>
+            </div>
+        </div>
+
+        <div class="character">
+            <img src="../images/Whimsicle2.webp" alt="Whimsicle the Haunter">
+            <div class="character-info">
+                <h2>Whimsicle the Haunter</h2>
+                <p>From wild Pokémon to a goofy ghost, Whimsicle is a prankster like any normal Haunter. He’s also very agile. Lenored trained him to be a fighter when they first met, but Whimsicle still prefers pranks and jokes.</p>
+            </div>
+        </div>
+
+        <div class="character brawno">
+            <img src="./assets/Brawno.png" alt="Brawno the Hypno">
+            <div class="character-info">
+                <h2>Brawno the Hypno</h2>
+                <p>Brawno was born with a birth defect that made him unusually muscular! Though he’s a bit nervous and tends to stutter, Lenored helps him feel more confident. Brawno is even learning from Lenored’s research, despite his occasional fears.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
