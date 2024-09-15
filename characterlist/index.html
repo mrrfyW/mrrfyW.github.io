@@ -73,12 +73,17 @@
         }
         /* Common character image settings */
         .character img {
-            max-width: 100%;
-            width: 300px;  /* Default width */
+            width: 250px; /* Fixed width for all images */
             border-radius: 20px;
-            object-fit: contain;
+            margin-right: 20px; /* Add space between image and text */
             transition: transform 0.5s ease; /* Smooth transition for rotation */
         }
+
+        .character:nth-child(even) img {
+            margin-left: 20px; /* Add space between image and text on reversed side */
+            margin-right: 0;
+        }
+        
         .character img:hover {
             transform: rotate(10deg); /* Rotate image by 15 degrees on hover */
         }
@@ -98,6 +103,7 @@
             background: linear-gradient(145deg, #a888e6, #8e49b6); /* Gradient background */
             background-color: rgb(58, 16, 105); /* Subtle background to make text stand out */
         }
+        
         .character-info h2 {
             margin: 0 0 10px;
             font-family: 'Raleway', sans-serif; /* Character Name Font */
@@ -111,6 +117,22 @@
             font-size: 18px;
             line-height: 1.5;
             color: #e0e0e0;
+        }
+        @media only screen and (max-width: 768px) {
+            .character {
+                flex-direction: column; /* Stack image and text vertically */
+                align-items: center; /* Center-align the content */
+            }
+
+            .character img {
+                width: 80%; /* Scale the image to fit smaller screens */
+                margin: 0 0 20px 0; /* Add space below the image */
+            }
+
+            .character-info {
+                max-width: 90%; /* Increase max-width to fill more screen space */
+                text-align: center; /* Center text on smaller screens */
+            }
         }
     </style>
 </head>
