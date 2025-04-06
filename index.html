@@ -23,6 +23,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow: hidden; /* Prevent scrollbars if content slightly overflows */
   }
   .container {
     position: relative;
@@ -66,19 +67,19 @@
     z-index: 1;
   }
   .music-button {
-    position: absolute;
+    position: fixed; /* Changed to fixed */
     bottom: 2.5%; /* Offset from the bottom */
     left: 2.5%; /* Offset from the left */
     max-width: 7.5%; /* Scalable size */
     z-index: 3; /* Ensure it's above other elements */
+    cursor: pointer; /* Indicate it's clickable */
   }
   .music-info {
-    position: absolute;
+    position: fixed; /* Changed to fixed */
     bottom: 2.5%; /* Offset from the bottom */
     left: 11.5%; /* Offset from the left */
-    transform: translateX(10%);
-    transform: translateY(-100%);
-    width: 80%; /* Adjust width as needed */
+    /* Removed transform: translateY(-100%); to align better with fixed button */
+    width: auto; /* Adjust width as needed */
     z-index: 3; /* Ensure it's above other elements */
   }
   #track-name {
@@ -86,10 +87,11 @@
     font-size: 2vw; /* Adjust the font size as needed */
     color: #ffffff; /* Set the text color */
     margin: 0; /* Remove default margin */
-    text-shadow: -1px -1px 0 #000,  
+    text-shadow: -1px -1px 0 #000,
                   1px -1px 0 #000,
                  -1px 1px 0 #000,
                   1px 1px 0 #000; /* Black outline */
+    white-space: nowrap; /* Prevent text wrapping */
   }
   #track-name a {
     color: #ffffff; /* Set the link color */
@@ -98,13 +100,11 @@
   #track-name a:hover {
     text-decoration: underline; /* Add underline on hover */
   }
+  /* Container styling adjusted for centering absolute elements */
   .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    /* Removed flex properties as absolute positioning is used */
     height: 100%;
-    position: relative
+    position: relative;
   }
   .about-image, .find-image, .projects-image {
     position: absolute;
@@ -135,6 +135,7 @@
     z-index: 9999; /* Ensure it's on top of other content */
     opacity: 1; /* Initially fully opaque */
     transition: opacity 0.5s; /* Apply a 0.5s transition for opacity */
+    pointer-events: none; /* Allow clicks through after fade */
   }
   .characterlist-image {
     position: absolute;
@@ -144,10 +145,24 @@
     max-width: 15%;
     z-index: 3;
   }
+
+  /* Style for the Neocities badge */
+  .neocities-badge {
+    position: fixed; /* Position relative to the viewport */
+    bottom: 2.5%;    /* Distance from the bottom */
+    right: 2.5%;     /* Distance from the right */
+    max-width: 100px;  /* Control the size (adjust as needed) */
+    width: auto;       /* Maintain aspect ratio */
+    height: auto;      /* Maintain aspect ratio */
+    border: 3px solid black; /* Black outline */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6); /* Add shadow */
+    z-index: 3;      /* Ensure it's above background, same level as music button */
+  }
 </style>
 </head>
 <body>
-  <div class="overlay"></div>
+  <div class="overlay"></div> <!-- Overlay should be first for z-index behavior -->
+
   <div class="container">
     <img class="background" src="images/background.webp" alt="Background">
     <a href="3DS/index.html">
@@ -167,59 +182,72 @@
     <a href="https://MrrfyW.github.io/characterlist/">
       <img class="characterlist-image" src="images/characters.webp" alt="Character List">
     </a>
-    <img class="music-button" src="images/music_off.webp" alt="Music Button">
-    <div class="music-info" style="display: none;">
-      <p id="track-name"><a href="#" id="music-link" target="_blank"></a></p>
-    </div>
+    <!-- Music elements moved outside container for fixed positioning to work reliably -->
   </div>
-  <audio id="background-music">
-    <source src="audio/eshopstart.mp3" type="audio/mpeg">
-    <source src="audio/eshoploop1.mp3" type="audio/mpeg">
-    <source src="audio/eshoploop2.mp3" type="audio/mpeg">
+
+  <!-- Music Button and Info placed outside the relatively positioned container -->
+  <img class="music-button" src="images/music_off.webp" alt="Music Button">
+  <div class="music-info" style="display: none;">
+      <p id="track-name"><a href="#" id="music-link" target="_blank"></a></p>
+  </div>
+
+  <!-- Neocities Badge added here -->
+  <img class="neocities-badge" src="/p/now_on_neocities.png" alt="Now on Neocities">
+
+  <audio id="background-music" loop> <!-- Removed source tags, will set dynamically -->
+    <!-- Initial source will be set by script -->
   </audio>
+
   <script>
     window.addEventListener('load', function() {
       const overlay = document.querySelector('.overlay');
       overlay.style.opacity = 0; // Fade out the overlay
-      setTimeout(() => {
-        overlay.style.display = 'none'; // Hide the overlay after fading out
-      }, 500); // Wait for the duration of the transition (0.5s)
+      // Optional: Remove the overlay from the DOM after transition if it interferes
+      // setTimeout(() => {
+      //   if (overlay) overlay.remove();
+      // }, 500); // Matches CSS transition duration
     });
+
     const leftImages = [
-      "images/Lenored1.webp",
-      "images/Lenored2.webp",
-      "images/Lenored3.webp",
-      "images/Lenored4.webp",
-      "images/Lenored5.webp",
-      "images/Lenored6.webp",
-      "images/Lenored7.webp",
-      "images/Lenored8.webp"
+      "images/Lenored1.webp", "images/Lenored2.webp", "images/Lenored3.webp",
+      "images/Lenored4.webp", "images/Lenored5.webp", "images/Lenored6.webp",
+      "images/Lenored7.webp", "images/Lenored8.webp"
     ];
 
     const rightImages = [
-      "images/Whimsicle1.webp",
-      "images/Whimsicle2.webp"
+      "images/Whimsicle1.webp", "images/Whimsicle2.webp"
     ];
 
     const leftImageElement = document.querySelector('.left-image');
     const rightImageElement = document.querySelector('.right-image');
     const musicButton = document.querySelector('.music-button');
     const musicInfo = document.querySelector('.music-info');
-    const trackName = document.getElementById('track-name');
-    const musicLink = document.getElementById('music-link');
+    const trackNameElement = document.getElementById('track-name'); // Renamed variable
+    // const musicLink = document.getElementById('music-link'); // No longer directly used like this
     const backgroundMusic = document.getElementById('background-music');
+
     let leftIndex = 0;
     let rightIndex = 0;
     let isRightForward = true;
     let isMusicOn = false; // Initially music is off
+    let currentTrackIndex = -1; // -1 means intro, 0 or 1 means loop sections
+    let hasPlayedIntro = false; // Track if intro has finished
 
+    // Define the audio tracks
+    const introTrack = { src: "audio/eshopstart.mp3", trackURL: "https://youtu.be/q8FL2crrVV4", trackName: "Playing: January 2015 - Nintendo 3DS eShop" };
+    const loopTracks = [
+        { src: "audio/eshoploop1.mp3", trackURL: "https://youtu.be/q8FL2crrVV4", trackName: "Playing: January 2015 - Nintendo 3DS eShop" },
+        { src: "audio/eshoploop2.mp3", trackURL: "https://youtu.be/xqvrIg9zrqY", trackName: "Playing: January 2015 - Nintendo 3DS eShop (SiivaGunner)" }
+    ];
+
+    // --- Image Rotation Logic ---
     setInterval(() => {
       let newIndex;
       do {
           newIndex = Math.floor(Math.random() * leftImages.length);
-      } while (newIndex === leftIndex); // Ensure newIndex is different from the previous index
+      } while (newIndex === leftIndex);
       leftIndex = newIndex;
-      leftImageElement.src = leftImages[leftIndex];
+      if (leftImageElement) leftImageElement.src = leftImages[leftIndex];
     }, 750);
 
     setInterval(() => {
@@ -230,54 +258,73 @@
         rightIndex = (rightIndex - 1 + rightImages.length) % rightImages.length;
         if (rightIndex === 0) isRightForward = true;
       }
-      rightImageElement.src = rightImages[rightIndex];
+      if (rightImageElement) rightImageElement.src = rightImages[rightIndex];
     }, 750);
 
+    // --- Music Logic ---
+    function setTrack(track) {
+        backgroundMusic.src = track.src;
+        trackNameElement.innerHTML = `<a href="${track.trackURL}" target="_blank">${track.trackName}</a>`;
+    }
+
+    function playNextLoopTrack() {
+        // Randomly decide whether to play a different section (1 in 14 chance)
+        const shouldPlayDifferentSection = Math.random() < (1 / 14);
+        let nextTrackIndex;
+
+        if (currentTrackIndex === -1 || loopTracks.length <= 1) {
+            // If intro just played or only one loop track, just pick the first loop
+            nextTrackIndex = 0;
+        } else if (shouldPlayDifferentSection) {
+            // Pick the *other* loop track
+            nextTrackIndex = (currentTrackIndex + 1) % loopTracks.length;
+        } else {
+            // Keep playing the current loop track
+            nextTrackIndex = currentTrackIndex;
+        }
+
+        currentTrackIndex = nextTrackIndex;
+        setTrack(loopTracks[currentTrackIndex]);
+        backgroundMusic.loop = true; // Loop the track section
+        backgroundMusic.play().catch(error => console.log("Playback prevented:", error));
+    }
+
     musicButton.addEventListener('click', () => {
-      isMusicOn = !isMusicOn; // Toggle music state
+      isMusicOn = !isMusicOn;
       musicButton.src = isMusicOn ? "images/music_on.webp" : "images/music_off.webp";
+
       if (isMusicOn) {
-        backgroundMusic.src = "audio/eshopstart.mp3"; // Start with section1
-        backgroundMusic.play();
-        musicInfo.style.display = "block";
-        trackName.innerHTML = '<a href="https://youtu.be/q8FL2crrVV4" target="_blank">Playing: January 2015 - Nintendo 3DS eShop</a>';
+          musicInfo.style.display = "block";
+          // If music was just turned on, play the intro
+          if (!backgroundMusic.src || backgroundMusic.paused) {
+            currentTrackIndex = -1; // Reset to intro state
+            hasPlayedIntro = false;
+            setTrack(introTrack);
+            backgroundMusic.loop = false; // Intro doesn't loop
+            backgroundMusic.play().catch(error => console.log("Playback prevented:", error));
+          }
       } else {
-        backgroundMusic.pause();
-        musicInfo.style.display = "none";
+          backgroundMusic.pause();
+          musicInfo.style.display = "none";
       }
     });
 
-  // Define the sections with their URLs and track names
-  const sections = [
-      { src: "audio/eshoploop1.mp3", trackURL: "https://youtu.be/q8FL2crrVV4", trackName: "Playing: January 2015 - Nintendo 3DS eShop" },
-      { src: "audio/eshoploop2.mp3", trackURL: "https://youtu.be/xqvrIg9zrqY", trackName: "Playing: January 2015 - Nintendo 3DS eShop (SiivaGunner)" }
-  ];
+    backgroundMusic.addEventListener('ended', () => {
+        // This event only fires if loop=false. Use it for intro -> loop transition.
+        if (isMusicOn && currentTrackIndex === -1 && !hasPlayedIntro) {
+            hasPlayedIntro = true; // Mark intro as finished
+            playNextLoopTrack(); // Start the first loop track
+        }
+        // If a loop track somehow finishes (e.g., loop=false accidentally set), restart looping logic
+        else if (isMusicOn && backgroundMusic.loop === false) {
+            playNextLoopTrack();
+        }
+    });
 
-  // Initialize the current section index
-  let currentSectionIndex = 0;
+     // Handle potential browser autoplay restrictions
+     // A common pattern is to try playing and if it fails, wait for user interaction.
+     // The click handler already covers the user interaction part.
 
-  backgroundMusic.addEventListener('ended', () => {
-      // Randomly decide whether to play a different section
-      const shouldPlayDifferentSection = Math.random() < 1 / 14;
-
-      // Determine the next section index
-      let nextSectionIndex;
-      if (shouldPlayDifferentSection) {
-          nextSectionIndex = (currentSectionIndex + 1) % sections.length;
-      } else {
-          nextSectionIndex = currentSectionIndex;
-      }
-
-      // Set the next section
-      backgroundMusic.src = sections[nextSectionIndex].src;
-      trackName.innerHTML = `<a href="${sections[nextSectionIndex].trackURL}" target="_blank">${sections[nextSectionIndex].trackName}</a>`;
-
-      // Ensure the music player plays
-      backgroundMusic.play();
-
-      // Update the current section index
-      currentSectionIndex = nextSectionIndex;
-  });
   </script>
 </body>
 </html>
